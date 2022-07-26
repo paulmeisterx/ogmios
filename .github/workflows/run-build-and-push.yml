@@ -1,0 +1,17 @@
+name: Build and push ogmios
+
+on:
+  push:
+    branches:
+      - master
+
+concurrency: prod_environment
+
+jobs:
+  build-and-deploy:
+    uses: paulmeisterx/ogmios/.github/workflows/build-and-push.yml@master
+    with:
+      REPOSITORY: ogmios
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
